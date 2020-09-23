@@ -31,7 +31,7 @@ gas = {"Gasoline 95": 29.16, "Gasoline 91": 25.30, "Gasohol 91": 21.68,
         if (float(price[0]) != 0):
             gas[product] = float(price[0])
 
-
+#fuctiion
 def func();
 #loop
 while True:
