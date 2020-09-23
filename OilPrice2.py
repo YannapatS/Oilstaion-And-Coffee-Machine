@@ -24,122 +24,132 @@ for r in root.xpath('FUEL'):
     product = r.xpath('PRODUCT/text()')[0]
     price = r.xpath('PRICE/text()') or [0]
 
-    #    GasProduct.append([product, float(price[0])])
-    #    GasPrice.append(price)
+#     #    GasProduct.append([product, float(price[0])])
+#     #    GasPrice.append(price)
 
-    #print(product, float(price[0]),' BAHT')
+#     #print(product, float(price[0]),' BAHT')
     if (float(price[0]) != 0):
         gas[product] = float(price[0])
 
 
-a = 'Gasoline 95'
-b = 'Gasoline 91'
-c = 'Gasohol 91'
-d = 'Gasohol E20'
-e = 'Gasohol 95'
-f = 'Diesel'
+
+#loop
+while True:
+    print('#' * 82)
+    print("#" + " " * 28, "1. Gasoline 95 : ",
+        gas["Gasoline 95"], " BAHT" + " "*22 + "#")
+    print("#" + " " * 28, "2. Gasoline 91 : ",
+        gas["Gasoline 91"], " BAHT" + " "*23 + "#")
+    print("#" + " " * 28, "3. Gasohol 91 : ",
+        gas["Gasohol 91"], " BAHT" + " "*23 + "#")
+    print("#" + " " * 28, "4. Gasohol E20 : ", 
+        gas["Gasohol E20"], "BAHT" + " "*24 + "#")
+    print("#" + " " * 28, "5. Gasohol 95 : ", 
+        gas["Gasohol 95"], "BAHT" + " "*25 + "#")
+    print("#" + " " * 28, "6. Diesel : ", 
+        gas["Diesel"], "BAHT" + " "*29 + "#")
+    print('#' * 82)
 
 
-print('#' * 82)
-print("#" + " " * 28, "Gasoline 95 : ",
-      gas["Gasoline 95"], " BAHT" + " "*25 + "#")
-print("#" + " " * 28, "Gasoline 91 : ",
-      gas["Gasoline 91"], " BAHT" + " "*26 + "#")
-print("#" + " " * 28, "Gasohol 91 : ",
-      gas["Gasohol 91"], " BAHT" + " "*26 + "#")
-print("#" + " " * 28, "Gasohol E20 : ", gas["Gasohol E20"], " "*30 + "#")
-print("#" + " " * 28, "Gasohol 95 : ", gas["Gasohol 95"], " "*31 + "#")
-print("#" + " " * 28, "Diesel : ", gas["Diesel"], "BAHT" + " "*31 + "#")
-print('#' * 82)
+    # เลือกประเภทที่ต้องการ
+
+    g = input('เลือกเบอร์ 1 ใส่จำนวนเงิน เลือกเบอร์ 2 ใส่จำนวนลิตร : ')
 
 
-# เลือกประเภทที่ต้องการ
+    # เงืือนไขสำหรับการคำนวนจากเงินแปลงเป็นลิตร
+    if g == '1':
+        price_in = int(input("ใส่จำนวนเงิน :  "))
+        oil_c = int(input("เลือกชนิดน้ำมัน : "))
+        if oil_c == 1:
+            price = price_in / gas["Gasoline 95"]
+            print('#' * 82)
+            print("#" + " " * 28, "จำนวนเงิน :  ", str(price) +" บาท" + " "*17 + "#")
+            print('#' * 82)
 
-g = input('เลือกเบอร์ 1 ใส่จำนวนเงิน เลือกเบอร์ 2 ใส่จำนวนลิตร : ')
+        elif oil_c == 2:
+            price = price_in / gas["Gasoline 91"]
+            print('#' * 82)
+            print("#" + " " * 28, "จำนวนเงิน :  ", str(price) +" บาท" + " "*17 + "#")
+            print('#' * 82)
+
+        elif oil_c == 3:
+            price = price_in / gas["Gasohol 91"]
+            print('#' * 82)
+            print("#" + " " * 28, "จำนวนเงิน :  ", str(price) +" บาท" + " "*17 + "#")
+            print('#' * 82)
+        elif oil_c == 4:
+            price = price_in / gas["Gasohol E20"]
+            print('#' * 82)
+            print("#" + " " * 28, "จำนวนเงิน :  ", str(price) +" บาท" + " "*17 + "#")
+            print('#' * 82)
+        elif oil_c == 5:
+            price = price_in / gas["Gasohol 95"]
+            print('#' * 82)
+            print("#" + " " * 28, "จำนวนเงิน :  ", str(price) +" บาท" + " "*17 + "#")
+            print('#' * 82)
+        elif oil_c == 6:
+            price = price_in / gas["Diesel"]
+            print('#' * 82)
+            print("#" + " " * 28, "จำนวนเงิน :  ", str(price) +" บาท" + " "*17 + "#")
+            print('#' * 82)
+
+        else:
+            print('#' * 82)
+            print('#' + " " * 28, "error" + " "*46 + "#")
+            print('#' * 82)
+        #เลือก Exit หรือ กลับสู่ Menu
+        f = "1"
+        print("1 - exit, 2- back  the menu. ")
+        s = "2"
+        e = input()
+        if(e !=s):
+            break
 
 
-# เงืือนไขสำหรับการคำนวนจากเงินแปลงเป็นลิตร
-if g == '1':
-    price_in = int(input("ใส่จำนวนเงิน :  "))
-    oil_c = input("เลือกชนิดน้ำมัน : ")
-    if oil_c == a:
-        price = price_in / gas["Gasoline 95"]
-        print('#' * 82)
-        print("#" + " " * 28, "จำนวนลิตร :  ", str(price) + " "*21 + "#")
-        print('#' * 82)
+    # เงืือนไขสำหรับการคำนวนจากลิตรแปลงเป็นเงิน
+    if g == '2':
+        price_in = int(input("ใส่จำนวนเงิน :  "))
+        oil_c = int(input("เลือกชนิดน้ำมัน : "))
+        if oil_c == 1:
+            price = price_in * gas["Gasoline 95"]
+            print('#' * 82)
+            print("#" + " " * 28, "จำนวนลิตร :  ", str(price) + " ลิตร" + " "*27 + "#")
+            print('#' * 82)
+        elif oil_c == 2:
+            price = price_in * gas["Gasoline 91"]
+            print('#' * 82)
+            print("#" + " " * 28, "จำนวนลิตร :  ", str(price) + " ลิตร" + " "*27 + "#")
+            print('#' * 82)
+        elif oil_c == 3:
+            price = price_in * gas["Gasohol 91"]
+            print('#' * 82)
+            print("#" + " " * 28, "จำนวนลิตร :  ", str(price) + " ลิตร" + " "*27 + "#")
+            print('#' * 82)
+        elif oil_c == 4:
+            price = price_in * gas["Gasohol E20"]
+            print('#' * 82)
+            print("#" + " " * 28, "จำนวนลิตร :  ", str(price) + " ลิตร" + " "*27 + "#")
+            print('#' * 82)
+        elif oil_c == 5:
+            price = price_in * gas["Gasohol 95"]
+            print('#' * 82)
+            print("#" + " " * 28, "จำนวนลิตร :  ", str(price) + " ลิตร" + " "*27 + "#")
+            print('#' * 82)
+        elif oil_c == 6:
+            price = price_in * gas["Diesel"]
+            print('#' * 82)
+            print("#" + " " * 28, "จำนวนลิตร :  ", str(price) + " ลิตร" + " "*27 + "#")
+            print('#' * 82)
 
-    elif oil_c == b:
-        price = price_in / gas["Gasoline 91"]
-        print('#' * 82)
-        print("#" + " " * 28, "จำนวนลิตร :  ", str(price) + " "*20 + "#")
-        print('#' * 82)
+        else:
+            print('#' * 82)
+            print('#' + " " * 28, "error" + " "*46 + "#")
+            print('#' * 82)
 
-    elif oil_c == c:
-        price = price_in / gas["Gasohol 91"]
-        print('#' * 82)
-        print("#" + " " * 28, "จำนวนลิตร :  ", str(price) + " "*20 + "#")
-        print('#' * 82)
-    elif oil_c == d:
-        price = price_in / gas["Gasohol E20"]
-        print('#' * 82)
-        print("#" + " " * 28, "จำนวนลิตร :  ", str(price) + " "*20 + "#")
-        print('#' * 82)
-    elif oil_c == e:
-        price = price_in / gas["Gasohol 95"]
-        print('#' * 82)
-        print("#" + " " * 28, "จำนวนลิตร :  ", str(price) + " "*20 + "#")
-        print('#' * 82)
-    elif oil_c == f:
-        price = price_in / gas["Diesel"]
-        print('#' * 82)
-        print("#" + " " * 28, "จำนวนลิตร :  ", str(price) + " "*20 + "#")
-        print('#' * 82)
-
-    else:
-        print('#' * 82)
-        print('#' + " " * 28, "error" + " "*46 + "#")
-        print('#' * 82)
-
-
-# เงืือนไขสำหรับการคำนวนจากลิตรแปลงเป็นเงิน
-if g == '2':
-    price_in = int(input("ใส่จำนวนเงิน :  "))
-    oil_c = (input("เลือกชนิดน้ำมัน : "))
-    if oil_c == a:
-        price = price_in * gas["Gasoline 95"]
-        print('#' * 82)
-        print("#" + " " * 28, "จำนวนลิตร :  ", str(price) + " "*31 + "#")
-        print('#' * 82)
-    elif oil_c == b:
-        price = price_in * gas["Gasoline 91"]
-        print('#' * 82)
-        print("#" + " " * 28, "จำนวนลิตร :  ", str(price) + " "*31 + "#")
-        print('#' * 82)
-    elif oil_c == c:
-        price = price_in * gas["Gasohol 91"]
-        print('#' * 82)
-        print("#" + " " * 28, "จำนวนลิตร :  ", str(price) + " "*31 + "#")
-        print('#' * 82)
-    elif oil_c == d:
-        price = price_in * gas["Gasohol E20"]
-        print('#' * 82)
-        print("#" + " " * 28, "จำนวนลิตร :  ", str(price) + " "*31 + "#")
-        print('#' * 82)
-    elif oil_c == e:
-        price = price_in * gas["Gasohol 95"]
-        print('#' * 82)
-        print("#" + " " * 28, "จำนวนลิตร :  ", str(price) + " "*21 + "#")
-        print('#' * 82)
-    elif oil_c == f:
-        price = price_in * gas["Diesel"]
-        print('#' * 82)
-        print("#" + " " * 28, "จำนวนลิตร :  ", str(price) + " "*31 + "#")
-        print('#' * 82)
-
-    else:
-        print('#' * 82)
-        print('#' + " " * 28, "error" + " "*46 + "#")
-        print('#' * 82)
-
-if(input("Enter continue or exit ") == "exit"):
-    ll = False
+        #เลือก Exit หรือ กลับสู่ Menu
+        f = "1"
+        print("1 - exit, 2- back  the menu. ")
+        s = "2"
+        e = input()
+        if(e !=s):
+            break
